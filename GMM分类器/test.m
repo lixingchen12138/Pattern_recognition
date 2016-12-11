@@ -1,0 +1,12 @@
+Data = Train1;
+Mu = [0 0];
+Mu2= [10 10];
+Sigma1 = [3 1;1 1];
+Sigma2 = [2 2;2 5];
+Alpha = [2/3 1/3];
+prob = zeros(1000,2);
+prob(:,1) = Gauss( Data, Mu, Sigma1 );
+prob(:,2) = Gauss( Data, Mu2, Sigma2 );
+Pix_tmp = repmat(Alpha,1000,1).*prob;
+Pix = Pix_tmp./(repmat(sum(Pix_tmp,2),1,2));
+Beta = sum(Pix);
